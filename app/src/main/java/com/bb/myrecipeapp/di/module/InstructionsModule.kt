@@ -1,6 +1,8 @@
-package com.bb.myrecipeapp
+package com.bb.myrecipeapp.di.module
 
 
+import com.bb.myrecipeapp.model.Instruction
+import com.bb.myrecipeapp.model.PostInstruct
 import dagger.Module
 import dagger.Provides
 
@@ -10,12 +12,12 @@ class InstructionsModule {
     constructor()
 
     @Provides
-    fun writeInstruction(): InstructionsModule = InstructionsModule()
+    fun writeInstruction(): InstructionsModule =
+        InstructionsModule()
 
     @Provides
     fun postInstruction(): PostInstruct {
-            postInstruct.inflate()
-        return postInstruct
+        return PostInstruct()
     }
 
     @Provides

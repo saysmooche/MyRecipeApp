@@ -1,4 +1,4 @@
-package com.bb.myrecipeapp
+package com.bb.myrecipeapp.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bb.myrecipeapp.R
 import java.util.*
 
     class ExistingRecipeAdapter(context: Context?, recipeList: LinkedList<String>) : RecyclerView.Adapter<ExistingRecipeAdapter.ListViewHolder>() {

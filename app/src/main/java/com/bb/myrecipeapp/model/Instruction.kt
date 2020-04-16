@@ -1,4 +1,4 @@
-package com.bb.myrecipeapp
+package com.bb.myrecipeapp.model
 
 class Instruction {
     constructor()

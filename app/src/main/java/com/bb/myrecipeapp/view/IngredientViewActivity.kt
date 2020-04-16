@@ -1,4 +1,4 @@
-package com.bb.myrecipeapp
+package com.bb.myrecipeapp.view
 
     import android.os.Bundle
     import android.view.Menu
@@ -8,13 +8,16 @@ package com.bb.myrecipeapp
     import androidx.appcompat.widget.Toolbar
     import androidx.recyclerview.widget.LinearLayoutManager
     import androidx.recyclerview.widget.RecyclerView
+    import com.bb.myrecipeapp.R
+    import com.bb.myrecipeapp.adapter.IngredientAdapter
+    import com.bb.myrecipeapp.base.BaseClass
     import java.util.*
 
-    class RecyclerViewActivity : BaseClass() {
+    class IngredientViewActivity : BaseClass() {
 
         private val mIngredientList = LinkedList<String>()
         private lateinit var mRecyclerView: RecyclerView
-        private var mAdapter: RecycleViewAdapter? = null
+        private var mAdapter: IngredientAdapter? = null
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -36,7 +39,11 @@ package com.bb.myrecipeapp
                 mIngredientList.addLast("Default Ingredient $value")
             }
             mRecyclerView = findViewById(R.id.recyclerview)
-            mAdapter = RecycleViewAdapter(this, mIngredientList)
+            mAdapter =
+                IngredientAdapter(
+                    this,
+                    mIngredientList
+                )
             mRecyclerView.adapter = mAdapter
             mRecyclerView.layoutManager = LinearLayoutManager(this)
         }

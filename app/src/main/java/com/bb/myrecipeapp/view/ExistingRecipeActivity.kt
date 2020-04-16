@@ -1,4 +1,4 @@
-package com.bb.myrecipeapp
+package com.bb.myrecipeapp.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,16 +7,16 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import dagger.Module;
-import dagger.Provides;
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bb.myrecipeapp.R
+import com.bb.myrecipeapp.adapter.ExistingRecipeAdapter
+import com.bb.myrecipeapp.base.BaseClass
+import com.bb.myrecipeapp.model.Recipe
 import java.util.*
 
-import com.bb.myrecipeapp.Recipe
-
-    class ExistingRecipe : BaseClass() {
+    class ExistingRecipeActivity : BaseClass() {
 
         private val mRecipeList = LinkedList<String>()
         private lateinit var mRecyclerView: RecyclerView
@@ -24,9 +24,9 @@ import com.bb.myrecipeapp.Recipe
 
         //Dagger
         private lateinit var recipe: Recipe
-        var component: RecipeComponent = Dagger.builder()
-            .instructionsModule(InstructionsModule())
-            .build()
+//        var component: RecipeComponent = DaggerRecipeComponent.builder()
+//            .instructionsModule(InstructionsModule())
+//            .build()
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ import com.bb.myrecipeapp.Recipe
             val editName = findViewById<EditText?>(R.id.editText2)
             var value = editName!!.text.toString()
 
-            recipe = component.getRecipe()
+//            recipe = component.getRecipe()
 
             buttonPlus.setOnClickListener {
                 val recipeListSize = mRecipeList.size
@@ -52,7 +52,11 @@ import com.bb.myrecipeapp.Recipe
                 mRecipeList.addLast("Default Recipe $value")
             }
             mRecyclerView = findViewById(R.id.recyclerview2)
-            mAdapter = ExistingRecipeAdapter(this, mRecipeList)
+            mAdapter =
+                ExistingRecipeAdapter(
+                    this,
+                    mRecipeList
+                )
             mRecyclerView.adapter = mAdapter
             mRecyclerView.layoutManager = LinearLayoutManager(this)
         }
@@ -70,7 +74,7 @@ import com.bb.myrecipeapp.Recipe
         }
 
         override fun goCreate(view: View?){
-            val intent = Intent(applicationContext, RecyclerViewActivity::class.java)
+            val intent = Intent(applicationContext, IngredientViewActivity::class.java)
             startActivity(intent)
         }
 

@@ -1,4 +1,4 @@
-package com.bb.myrecipeapp
+package com.bb.myrecipeapp.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,17 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bb.myrecipeapp.R
 import java.util.*
 
 
-class RecycleViewAdapter(context: Context?, ingredientList: LinkedList<String>) : RecyclerView.Adapter<RecycleViewAdapter.ListViewHolder>() {
+class IngredientAdapter(context: Context?, ingredientList: LinkedList<String>) : RecyclerView.Adapter<IngredientAdapter.ListViewHolder>() {
 
     private val mIngredientList: LinkedList<String>
     private val mInflater: LayoutInflater
 
-    inner class ListViewHolder(itemView: View, adapter: RecycleViewAdapter) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class ListViewHolder(itemView: View, adapter: IngredientAdapter) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         val ingredientItemView: TextView
-        val mAdapter: RecycleViewAdapter
+        val mAdapter: IngredientAdapter
         override fun onClick(view: View) {
             val mPosition = layoutPosition
             val element = mIngredientList[mPosition]
@@ -34,7 +35,7 @@ class RecycleViewAdapter(context: Context?, ingredientList: LinkedList<String>) 
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): ListViewHolder {
         val mItemView = mInflater.inflate(
-                R.layout.score_layout, parent, false)
+            R.layout.score_layout, parent, false)
 
         return ListViewHolder(mItemView, this)
     }

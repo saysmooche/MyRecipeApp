@@ -1,7 +1,8 @@
-package com.bb.myrecipeapp
+package com.bb.myrecipeapp.model
 
 import  android.content.ContentValues.TAG
 import android.util.Log
+import com.bb.myrecipeapp.di.module.InstructionsModule
 import javax.inject.Inject
 
 class Recipe {
