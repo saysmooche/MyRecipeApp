@@ -58,8 +58,8 @@ import java.util.*
             mRecyclerView.layoutManager = LinearLayoutManager(this)
 
             viewModel = ViewModelProviders.of(this).get(RecipeViewModel::class.java)
-            if(viewModel.getUserLoggedIn()){
-                getRecipes();
+            if(viewModel.getUserLoggedIn() == true){
+//                getRecipes();
                 setEmailAsUsername();
             } else {
 
@@ -73,11 +73,11 @@ import java.util.*
         }
 
         private fun setEmailAsUsername() {
-            user_name_edittext2 = FirebaseAuth.getInstance().currentUser.email
+            user_name_edittext2.setText(FirebaseAuth.getInstance().currentUser?.email?:"unknown")
         }
 
         fun loginSuccess() {
-            getRecipes()
+//            getRecipes()
             setEmailAsUsername()
             supportFragmentManager.beginTransaction()
                 .remove(loginFragment)

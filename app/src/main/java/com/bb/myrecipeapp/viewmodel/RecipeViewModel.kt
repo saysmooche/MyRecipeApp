@@ -18,9 +18,9 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application){
     private lateinit var recipeReference: DatabaseReference
 
     fun getUserLoggedIn(): Boolean? {
-        return if (FirebaseAuth.getInstance()
+         if (FirebaseAuth.getInstance()
                 .currentUser != null && FirebaseAuth.getInstance().currentUser
-                .isEmailVerified()
+                .isEmailVerified() == true
         ) true else false
     }
 
@@ -65,7 +65,8 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application){
                         "User Creation Successful: Verification email sent.",
                         Toast.LENGTH_LONG
                     ).show()
-                    FirebaseAuth.getInstance().currentUser!!.sendEmailVerification()
+                    FirebaseAuth.getInstance().currentUser?.let {currentUser->
+                        currentUser.sendEmailVerification() }
                     registrationMLD.setValue(true)
                 } else {
                     Toast.makeText(
