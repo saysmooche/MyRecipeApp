@@ -49,7 +49,7 @@ class LoginFragment: Fragment() {
     private fun handleLogin(aBoolean: Boolean) {
         if(aBoolean){
             DebugLogger.logDebug(getString(R.string.success_login))
-            ((activity as ExistingRecipe?).loginSuccess()
+            ((activity as ExistingRecipeActivity?).loginSuccess()
     }
     }
 

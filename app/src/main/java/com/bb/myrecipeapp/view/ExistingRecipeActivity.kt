@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.login_fragment_layout.*
 import java.util.*
 
-    class ExistingRecipe : AppCompatActivity() {
+    class ExistingRecipeActivity : AppCompatActivity() {
 
         private val loginFragment: LoginFragment = LoginFragment()
         private lateinit var viewModel: RecipeViewModel

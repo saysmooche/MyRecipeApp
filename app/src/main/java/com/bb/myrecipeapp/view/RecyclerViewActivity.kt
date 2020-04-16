@@ -59,7 +59,7 @@ package com.bb.myrecipeapp.view
             } else super.onOptionsItemSelected(item)
         }
         fun goIngredient(view: View?){
-            val intent = Intent(applicationContext, ExistingRecipe::class.java)
+            val intent = Intent(applicationContext, ExistingRecipeActivity::class.java)
             startActivity(intent)
         }
         fun goCreate(view: View?){

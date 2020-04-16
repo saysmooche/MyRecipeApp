@@ -6,6 +6,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.bb.myrecipeapp.model.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 
 class RecipeViewModel(application: Application) : AndroidViewModel(application){
@@ -13,6 +15,7 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application){
     private val registrationMLD = MutableLiveData<Boolean>()
     private val loginMLD = MutableLiveData<Boolean>()
 
+    private lateinit var recipeReference: DatabaseReference
 
     fun getUserLoggedIn(): Boolean? {
         return if (FirebaseAuth.getInstance()
@@ -74,7 +77,8 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application){
                 }
             }
     }
-
-
-
 }
+
+
+
+
