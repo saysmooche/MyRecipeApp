@@ -1,4 +1,4 @@
-package com.bb.myrecipeapp
+package com.bb.myrecipeapp.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,11 +9,20 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bb.myrecipeapp.R
+import com.bb.myrecipeapp.adapter.ExistingRecipeAdapter
+import com.bb.myrecipeapp.viewmodel.RecipeViewModel
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.login_fragment_layout.*
 import java.util.*
 
-    class ExistingRecipe : AppCompatActivity() {
+    class ExistingRecipeActivity : AppCompatActivity() {
+
+        private val loginFragment: LoginFragment = LoginFragment()
+        private lateinit var viewModel: RecipeViewModel
 
         private val mRecipeList = LinkedList<String>()
         private lateinit var mRecyclerView: RecyclerView
@@ -41,9 +50,38 @@ import java.util.*
                 mRecipeList.addLast("Default Recipe $value")
             }
             mRecyclerView = findViewById(R.id.recyclerview2)
-            mAdapter = ExistingRecipeAdapter(this, mRecipeList)
+            mAdapter = ExistingRecipeAdapter(
+                this,
+                mRecipeList
+            )
             mRecyclerView.adapter = mAdapter
             mRecyclerView.layoutManager = LinearLayoutManager(this)
+
+            viewModel = ViewModelProviders.of(this).get(RecipeViewModel::class.java)
+            if(viewModel.getUserLoggedIn()){
+                getRecipes();
+                setEmailAsUsername();
+            } else {
+
+                getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.login_fragment_view, loginFragment)
+                    .commit();
+
+            }
+
+        }
+
+        private fun setEmailAsUsername() {
+            user_name_edittext2 = FirebaseAuth.getInstance().currentUser.email
+        }
+
+        fun loginSuccess() {
+            getRecipes()
+            setEmailAsUsername()
+            supportFragmentManager.beginTransaction()
+                .remove(loginFragment)
+                .commit()
         }
 
         override fun onCreateOptionsMenu(menu: Menu): Boolean {

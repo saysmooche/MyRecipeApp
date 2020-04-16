@@ -6,7 +6,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bb.myrecipeapp.RecyclerViewActivity">
+    tools:context="com.bb.myrecipeapp.view.RecyclerViewActivity">
+
+    <FrameLayout
+        android:id="@+id/login_fragment_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/textView3"
@@ -106,6 +111,11 @@
         app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toEndOf="@+id/editText1"
         app:layout_constraintTop_toBottomOf="@+id/recyclerview2" />
+
+    <FrameLayout
+        android:id="@+id/recipe_fragment_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
