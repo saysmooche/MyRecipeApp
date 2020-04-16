@@ -9,22 +9,23 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
 
-class RecycleViewAdapter(context: Context?, scoreList: LinkedList<String>) : RecyclerView.Adapter<RecycleViewAdapter.ListViewHolder>() {
-    private val mScoreList: LinkedList<String>
+class RecycleViewAdapter(context: Context?, ingredientList: LinkedList<String>) : RecyclerView.Adapter<RecycleViewAdapter.ListViewHolder>() {
+
+    private val mIngredientList: LinkedList<String>
     private val mInflater: LayoutInflater
 
     inner class ListViewHolder(itemView: View, adapter: RecycleViewAdapter) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        val scoreItemView: TextView
+        val ingredientItemView: TextView
         val mAdapter: RecycleViewAdapter
         override fun onClick(view: View) {
             val mPosition = layoutPosition
-            val element = mScoreList[mPosition]
-            mScoreList[mPosition] = "Clicked! $element"
+            val element = mIngredientList[mPosition]
+            mIngredientList[mPosition] = "Clicked! $element"
             mAdapter.notifyDataSetChanged()
         }
 
         init {
-            scoreItemView = itemView.findViewById(R.id.ingredient)
+            ingredientItemView = itemView.findViewById(R.id.ingredient)
             mAdapter = adapter
             itemView.setOnClickListener(this)
         }
@@ -40,16 +41,16 @@ class RecycleViewAdapter(context: Context?, scoreList: LinkedList<String>) : Rec
 
     override fun onBindViewHolder(holder: ListViewHolder,
                                   position: Int) {
-        val mCurrent = mScoreList[position]
-        holder.scoreItemView.text = mCurrent
+        val mCurrent = mIngredientList[position]
+        holder.ingredientItemView.text = mCurrent
     }
 
     override fun getItemCount(): Int {
-        return mScoreList.size
+        return mIngredientList.size
     }
 
     init {
         mInflater = LayoutInflater.from(context)
-        mScoreList = scoreList
+        mIngredientList = ingredientList
     }
 }

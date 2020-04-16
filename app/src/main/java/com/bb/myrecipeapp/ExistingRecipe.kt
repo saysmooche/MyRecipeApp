@@ -7,17 +7,26 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
+import dagger.Module;
+import dagger.Provides;
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-    class ExistingRecipe : AppCompatActivity() {
+import com.bb.myrecipeapp.Recipe
+
+    class ExistingRecipe : BaseClass() {
 
         private val mRecipeList = LinkedList<String>()
         private lateinit var mRecyclerView: RecyclerView
         private var mAdapter: ExistingRecipeAdapter? = null
+
+        //Dagger
+        private lateinit var recipe: Recipe
+        var component: RecipeComponent = Dagger.builder()
+            .instructionsModule(InstructionsModule())
+            .build()
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -28,8 +37,10 @@ import java.util.*
             val buttonPlus = findViewById<Button>(R.id.button)
             val buttonMinus = findViewById<Button>(R.id.button2)
             val buttonCreate = findViewById<Button>(R.id.button3)
-            val editName = findViewById<EditText>(R.id.editText2)
-            var value = editName.text.toString()
+            val editName = findViewById<EditText?>(R.id.editText2)
+            var value = editName!!.text.toString()
+
+            recipe = component.getRecipe()
 
             buttonPlus.setOnClickListener {
                 val recipeListSize = mRecipeList.size
@@ -58,8 +69,9 @@ import java.util.*
             } else super.onOptionsItemSelected(item)
         }
 
-        fun goCreate(view: View?){
+        override fun goCreate(view: View?){
             val intent = Intent(applicationContext, RecyclerViewActivity::class.java)
             startActivity(intent)
         }
+
     }

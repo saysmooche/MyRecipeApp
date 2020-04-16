@@ -8,12 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-    class ExistingRecipeAdapter(context: Context?, scoreList: LinkedList<String>) : RecyclerView.Adapter<ExistingRecipeAdapter.ListViewHolder>() {
+    class ExistingRecipeAdapter(context: Context?, recipeList: LinkedList<String>) : RecyclerView.Adapter<ExistingRecipeAdapter.ListViewHolder>() {
         private val mRecipeList: LinkedList<String>
         private val mInflater: LayoutInflater
 
         inner class ListViewHolder(itemView: View, adapter: ExistingRecipeAdapter) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-            val scoreItemView: TextView
+            val recipeItemView: TextView
             val mAdapter: ExistingRecipeAdapter
             override fun onClick(view: View) {
                 val mPosition = layoutPosition
@@ -23,7 +23,7 @@ import java.util.*
             }
 
             init {
-                scoreItemView = itemView.findViewById(R.id.recipe)
+                recipeItemView = itemView.findViewById(R.id.recipe)
                 mAdapter = adapter
                 itemView.setOnClickListener(this)
             }
@@ -40,7 +40,7 @@ import java.util.*
         override fun onBindViewHolder(holder: ListViewHolder,
                                       position: Int) {
             val mCurrent = mRecipeList[position]
-            holder.scoreItemView.text = mCurrent
+            holder.recipeItemView.text = mCurrent
         }
 
         override fun getItemCount(): Int {
@@ -49,6 +49,6 @@ import java.util.*
 
         init {
             mInflater = LayoutInflater.from(context)
-            mRecipeList = scoreList
+            mRecipeList = recipeList
         }
     }

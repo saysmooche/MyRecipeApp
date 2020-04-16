@@ -1,21 +1,18 @@
 package com.bb.myrecipeapp
 
-    import android.content.Intent
     import android.os.Bundle
     import android.view.Menu
     import android.view.MenuItem
-    import android.view.View
     import android.widget.Button
     import android.widget.EditText
-    import androidx.appcompat.app.AppCompatActivity
     import androidx.appcompat.widget.Toolbar
     import androidx.recyclerview.widget.LinearLayoutManager
     import androidx.recyclerview.widget.RecyclerView
     import java.util.*
 
-    class RecyclerViewActivity : AppCompatActivity() {
+    class RecyclerViewActivity : BaseClass() {
 
-        private val mScoreList = LinkedList<String>()
+        private val mIngredientList = LinkedList<String>()
         private lateinit var mRecyclerView: RecyclerView
         private var mAdapter: RecycleViewAdapter? = null
 
@@ -26,20 +23,20 @@ package com.bb.myrecipeapp
             val toolbar = findViewById<Toolbar>(R.id.toolbar)
             setSupportActionBar(toolbar)
             val button123 = findViewById<Button>(R.id.button)
-            val editName = findViewById<EditText>(R.id.editText1)
-            var value = editName.text.toString()
+            var editName = findViewById<EditText?>(R.id.editText1)
+            val value = editName!!.text.toString()
 
             button123.setOnClickListener {
-                val scoreListSize = mScoreList.size
-                mScoreList.addLast(" $value Ingredient Name")
-                mRecyclerView.adapter!!.notifyItemInserted(scoreListSize)
-                mRecyclerView.smoothScrollToPosition(scoreListSize)
+                val ingredientListSize = mIngredientList.size
+                mIngredientList.addLast(" $value Ingredient Name")
+                mRecyclerView.adapter!!.notifyItemInserted(ingredientListSize)
+                mRecyclerView.smoothScrollToPosition(ingredientListSize)
             }
             for (i in 0..10) {
-                mScoreList.addLast("Default Ingredient $value")
+                mIngredientList.addLast("Default Ingredient $value")
             }
             mRecyclerView = findViewById(R.id.recyclerview)
-            mAdapter = RecycleViewAdapter(this, mScoreList)
+            mAdapter = RecycleViewAdapter(this, mIngredientList)
             mRecyclerView.adapter = mAdapter
             mRecyclerView.layoutManager = LinearLayoutManager(this)
         }
@@ -55,12 +52,5 @@ package com.bb.myrecipeapp
                 true
             } else super.onOptionsItemSelected(item)
         }
-        fun goIngredient(view: View?){
-            val intent = Intent(applicationContext, ExistingRecipe::class.java)
-            startActivity(intent)
-        }
-        fun goCreate(view: View?){
-            val intent = Intent(applicationContext, RecyclerViewActivity::class.java)
-            startActivity(intent)
-        }
+
     }

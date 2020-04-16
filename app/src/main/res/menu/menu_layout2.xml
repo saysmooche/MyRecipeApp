@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.bb.mygameapp2.Activities.MainActivity">
+    tools:context="com.bb.myrecipeapp.ExistingRecipe">
     <item
         android:id="@+id/action_settings2"
         android:label="@+id/RecipeApp"
