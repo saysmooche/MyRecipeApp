@@ -3,6 +3,7 @@ package com.bb.myrecipeapp.util
 import android.util.Log
 import com.bb.myrecipeapp.util.Constants.Companion.ERROR_PREFIX
 import com.bb.myrecipeapp.util.Constants.Companion.TAG
+import java.lang.Exception
 
 class DebugLogger {
     companion object{
@@ -10,8 +11,8 @@ class DebugLogger {
             Log.d(TAG, message)
         }
 
-        fun logError(throwable: Throwable){
-            Log.d(TAG, ERROR_PREFIX + throwable.localizedMessage)
+        fun logError(exception: Exception){
+            Log.d(TAG, ERROR_PREFIX + exception.localizedMessage)
         }
     }
 }

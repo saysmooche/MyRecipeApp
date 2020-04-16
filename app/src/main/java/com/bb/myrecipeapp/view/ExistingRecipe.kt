@@ -58,16 +58,15 @@ import java.util.*
             mRecyclerView.layoutManager = LinearLayoutManager(this)
 
             viewModel = ViewModelProviders.of(this).get(RecipeViewModel::class.java)
-            if(viewModel.getUserLoggedIn()){ // User Logged in
+            if(viewModel.getUserLoggedIn()){
                 getRecipes();
                 setEmailAsUsername();
-            } else { //User is not logged in
+            } else {
 
                 getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.login_fragment_view, loginFragment)
                     .commit();
-                //Display Login/Sign Up Fragment.....
 
             }
 
