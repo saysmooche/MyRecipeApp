@@ -1,4 +1,4 @@
-package com.bb.myrecipeapp
+package com.bb.myrecipeapp.view
 
     import android.content.Intent
     import android.os.Bundle
@@ -11,6 +11,8 @@ package com.bb.myrecipeapp
     import androidx.appcompat.widget.Toolbar
     import androidx.recyclerview.widget.LinearLayoutManager
     import androidx.recyclerview.widget.RecyclerView
+    import com.bb.myrecipeapp.R
+    import com.bb.myrecipeapp.adapter.RecycleViewAdapter
     import java.util.*
 
     class RecyclerViewActivity : AppCompatActivity() {
@@ -39,7 +41,8 @@ package com.bb.myrecipeapp
                 mScoreList.addLast("Default Ingredient $value")
             }
             mRecyclerView = findViewById(R.id.recyclerview)
-            mAdapter = RecycleViewAdapter(this, mScoreList)
+            mAdapter =
+                RecycleViewAdapter(this, mScoreList)
             mRecyclerView.adapter = mAdapter
             mRecyclerView.layoutManager = LinearLayoutManager(this)
         }

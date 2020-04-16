@@ -1,4 +1,4 @@
-package com.bb.myrecipeapp
+package com.bb.myrecipeapp.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,11 +9,18 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bb.myrecipeapp.R
+import com.bb.myrecipeapp.adapter.ExistingRecipeAdapter
+import com.bb.myrecipeapp.viewmodel.RecipeViewModel
 import java.util.*
 
     class ExistingRecipe : AppCompatActivity() {
+
+        private val loginFragment: LoginFragment = LoginFragment()
+        private lateinit var viewModel: RecipeViewModel
 
         private val mRecipeList = LinkedList<String>()
         private lateinit var mRecyclerView: RecyclerView
@@ -41,9 +48,27 @@ import java.util.*
                 mRecipeList.addLast("Default Recipe $value")
             }
             mRecyclerView = findViewById(R.id.recyclerview2)
-            mAdapter = ExistingRecipeAdapter(this, mRecipeList)
+            mAdapter = ExistingRecipeAdapter(
+                this,
+                mRecipeList
+            )
             mRecyclerView.adapter = mAdapter
             mRecyclerView.layoutManager = LinearLayoutManager(this)
+
+            viewModel = ViewModelProviders.of(this).get(RecipeViewModel::class.java)
+            if(viewModel.getUserLoggedIn()){ // User Logged in
+                getMessages();
+                setEmailAsUSername();
+            } else { //User is not logged in
+
+                getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.login_fragment_view, loginFragment)
+                    .commit();
+                //Display Login/Sign Up Fragment.....
+
+            }
+
         }
 
         override fun onCreateOptionsMenu(menu: Menu): Boolean {
