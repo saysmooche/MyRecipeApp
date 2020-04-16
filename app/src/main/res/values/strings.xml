@@ -14,4 +14,6 @@
     <string name="save_score">Save Score</string>
     <string name="recipe">Recipe</string>
     <string name="ck_verify_email_message">Please check verification email.</string>
+    <string name="success_login">Login successful</string>
+    <string name="my_provider_name">com.bb.fileproviders</string>
 </resources>

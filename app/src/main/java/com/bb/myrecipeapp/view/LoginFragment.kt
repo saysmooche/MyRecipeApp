@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bb.myrecipeapp.R
 import com.bb.myrecipeapp.model.User
+import com.bb.myrecipeapp.util.DebugLogger
 import com.bb.myrecipeapp.viewmodel.RecipeViewModel
 import kotlinx.android.synthetic.main.login_fragment_layout.*
 
@@ -47,6 +48,7 @@ class LoginFragment: Fragment() {
 
     private fun handleLogin(aBoolean: Boolean) {
         if(aBoolean){
+            DebugLogger.logDebug(getString(R.string.success_login))
             ((activity as ExistingRecipe?).loginSuccess()
     }
     }

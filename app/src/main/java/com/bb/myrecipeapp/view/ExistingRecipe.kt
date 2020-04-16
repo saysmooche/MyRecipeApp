@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bb.myrecipeapp.R
 import com.bb.myrecipeapp.adapter.ExistingRecipeAdapter
 import com.bb.myrecipeapp.viewmodel.RecipeViewModel
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.login_fragment_layout.*
 import java.util.*
 
     class ExistingRecipe : AppCompatActivity() {
@@ -57,8 +59,8 @@ import java.util.*
 
             viewModel = ViewModelProviders.of(this).get(RecipeViewModel::class.java)
             if(viewModel.getUserLoggedIn()){ // User Logged in
-                getMessages();
-                setEmailAsUSername();
+                getRecipes();
+                setEmailAsUsername();
             } else { //User is not logged in
 
                 getSupportFragmentManager()
@@ -69,6 +71,18 @@ import java.util.*
 
             }
 
+        }
+
+        private fun setEmailAsUsername() {
+            user_name_edittext2 = FirebaseAuth.getInstance().currentUser.email
+        }
+
+        fun loginSuccess() {
+            getRecipes()
+            setEmailAsUsername()
+            supportFragmentManager.beginTransaction()
+                .remove(loginFragment)
+                .commit()
         }
 
         override fun onCreateOptionsMenu(menu: Menu): Boolean {
