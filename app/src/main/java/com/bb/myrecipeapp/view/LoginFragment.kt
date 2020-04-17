@@ -49,7 +49,7 @@ class LoginFragment: Fragment() {
     private fun handleLogin(aBoolean: Boolean) {
         if(aBoolean){
             DebugLogger.logDebug(getString(R.string.success_login))
-            ((activity as ExistingRecipeActivity?).loginSuccess()
+            ((activity as ExistingRecipeActivity?)?.loginSuccess())
     }
     }
 
@@ -60,7 +60,6 @@ class LoginFragment: Fragment() {
         }
     }
 
-    @OnClick([R.id.login_button, R.id.sign_up_button, R.id.sign_up_textview])
     fun onClick(view: View) {
         when (view.id) {
             R.id.login_button ->                 //Attempt login
