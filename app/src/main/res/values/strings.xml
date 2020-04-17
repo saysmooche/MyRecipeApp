@@ -19,4 +19,9 @@
     <string name="image_name_text">image_%s</string>
     <string name="date_format_text">DD_MM_YYYY_ss</string>
     <string name="image_postfix">.jpg</string>
+    <string name="upload_recipe_button">Upload Recipe</string>
+    <string name="select_image_button">Select Image</string>
+    <string name="instructions_edittext">Instructions</string>
+    <string name="ingredients_edittext">Ingredients</string>
+    <string name="recipe_name_edittext">Recipe Name</string>
 </resources>
