@@ -1,7 +1,8 @@
-package com.bb.myrecipeapp
+package com.bb.myrecipeapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bb.myrecipeapp.R
 
 class DetailActivity : AppCompatActivity() {
 

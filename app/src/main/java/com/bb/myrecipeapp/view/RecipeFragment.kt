@@ -135,18 +135,18 @@ class RecipeFragment: Fragment() {
 
     }
 
-    fun uploadRecipe() {
-
-        val databaseKey: String? = firebaseReference.push().key
-        val recipe = Recipe(
-            recipe_name_edittext.text.toString(),
-            List<Ingredients>,
-            method_edittext.text.toString(),
-            recipe_image
-        )
-        if (databaseKey != null) {
-            FirebaseDatabase.getInstance().getReference("Recipe").child(databaseKey).setValue(recipe)
-        }
-    }
+//    fun uploadRecipe() {
+//
+//        val databaseKey: String? = firebaseReference.push().key
+//        val recipe = Recipe(
+//            recipe_name_edittext.text.toString(),
+//            List<Ingredients>,
+//            method_edittext.text.toString(),
+//            recipe_image
+//        )
+//        if (databaseKey != null) {
+//            FirebaseDatabase.getInstance().getReference("Recipe").child(databaseKey).setValue(recipe)
+//        }
+//    }
 
 }

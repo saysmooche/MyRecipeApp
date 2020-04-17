@@ -18,10 +18,9 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application){
     private lateinit var recipeReference: DatabaseReference
 
     fun getUserLoggedIn(): Boolean? {
-        return if (FirebaseAuth.getInstance()
-                .currentUser != null && FirebaseAuth.getInstance().currentUser
-                .isEmailVerified()
-        ) true else false
+        return FirebaseAuth.getInstance()
+            .currentUser != null && FirebaseAuth.getInstance().currentUser
+            ?.isEmailVerified ?: true
     }
 
     fun loginUser(user: User) {
@@ -29,9 +28,11 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application){
             .signInWithEmailAndPassword(user.userName, user.userPassword)
             .addOnCompleteListener { task ->
                 if (task.isComplete && task.isSuccessful) {
-                    if (FirebaseAuth.getInstance().currentUser!!.isEmailVerified) {
+                    FirebaseAuth.getInstance().currentUser?.let { currentUser->
+                            currentUser.isEmailVerified;
+                        }
                         loginMLD.setValue(true)
-                    } else Toast.makeText(
+                    Toast.makeText(
                         getApplication(),
                         "Please verify email sent to " + user.userName,
                         Toast.LENGTH_LONG
@@ -39,7 +40,7 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application){
                 } else {
                     Toast.makeText(
                         getApplication(),
-                        "Login failed " + task.exception!!.localizedMessage,
+                        "Login failed " + task.exception?.localizedMessage,
                         Toast.LENGTH_LONG
                     ).show()
                     loginMLD.setValue(false)
@@ -65,12 +66,13 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application){
                         "User Creation Successful: Verification email sent.",
                         Toast.LENGTH_LONG
                     ).show()
-                    FirebaseAuth.getInstance().currentUser!!.sendEmailVerification()
+                    FirebaseAuth.getInstance().currentUser?.let {currentUser->
+                        currentUser.sendEmailVerification() }
                     registrationMLD.setValue(true)
                 } else {
                     Toast.makeText(
                         getApplication(),
-                        task.exception!!.localizedMessage,
+                        task.exception?.localizedMessage,
                         Toast.LENGTH_LONG
                     ).show()
                     registrationMLD.setValue(false)
