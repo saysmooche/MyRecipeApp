@@ -1,11 +1,15 @@
 package com.bb.myrecipeapp.view
 
+    import android.content.Intent
     import android.os.Bundle
     import android.view.Menu
     import android.view.MenuItem
+    import android.view.View
     import android.widget.Button
     import android.widget.EditText
     import androidx.appcompat.widget.Toolbar
+    import androidx.fragment.app.Fragment
+    import androidx.fragment.app.FragmentTransaction
     import androidx.recyclerview.widget.LinearLayoutManager
     import androidx.recyclerview.widget.RecyclerView
     import com.bb.myrecipeapp.R
@@ -13,7 +17,8 @@ package com.bb.myrecipeapp.view
     import com.bb.myrecipeapp.base.BaseClass
     import java.util.*
 
-    class IngredientViewActivity : BaseClass() {
+
+class IngredientViewActivity : BaseClass() {
 
         private val mIngredientList = LinkedList<String>()
         private lateinit var mRecyclerView: RecyclerView
@@ -60,4 +65,17 @@ package com.bb.myrecipeapp.view
             } else super.onOptionsItemSelected(item)
         }
 
+        fun goBack(v: View){
+            val intent = Intent(this, ExistingRecipeActivity::class.java)
+            startActivity(intent)
+        }
+
+        fun displayAll(v: View) {
+            val newFragment: Fragment = RecipeFragment()
+            val transaction: FragmentTransaction = getSupportFragmentManager()
+                .beginTransaction()
+            transaction.replace(R.id.recipe_frame, newFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
     }

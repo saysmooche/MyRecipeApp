@@ -1,9 +1,11 @@
 package com.bb.myrecipeapp.view
 
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -18,10 +20,9 @@ import kotlinx.android.synthetic.main.login_fragment_layout.*
 class LoginFragment: Fragment() {
 
     private lateinit var viewModel: RecipeViewModel
-
+    private var picAnimation: AnimationDrawable? = null
     private lateinit var registeredObserver: Observer<Boolean>
     private lateinit var loginObserver: Observer<Boolean>
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,14 +38,10 @@ class LoginFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         registeredObserver = Observer { aBoolean -> handleRegistration(aBoolean) }
-
         loginObserver = Observer { aBoolean -> handleLogin(aBoolean) }
-
         viewModel = ViewModelProviders.of(this).get(RecipeViewModel::class.java)
 
     }
-
-
 
     private fun handleLogin(aBoolean: Boolean) {
         if(aBoolean){
@@ -68,6 +65,16 @@ class LoginFragment: Fragment() {
                 userRegister()
             R.id.sign_up_textview ->                 //Attempt registration
                 sign_up_layout.setVisibility(View.VISIBLE)
+        }
+    }
+
+    fun openAnimation(view: View) {
+        lateinit var loginImage: ImageView
+        picAnimation = loginImage.background as AnimationDrawable
+        loginImage.setBackgroundResource(R.drawable.animation_items)
+        when (view.id) {
+            R.id.user_name_edittext ->
+                picAnimation!!.start()
         }
     }
 

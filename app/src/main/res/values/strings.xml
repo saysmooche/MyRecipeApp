@@ -19,4 +19,5 @@
     <string name="recipe_name_edittext">Recipe Name</string>
     <string name="log_username_editext">Username</string>
     <string name="log_password_edittext">Password</string>
+    <string name="addrecipe">add recipe</string>
 </resources>

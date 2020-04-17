@@ -147,4 +147,38 @@ class RecipeFragment: Fragment() {
         }
     }
 
+    fun daybreakface(view: View?) {
+        val facebookIntent = Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse("https://www.facebook.com/DaybreakZone")
+        )
+        startActivity(facebookIntent)
+    }
+
+    fun daybreakinst(view: View?) {
+        val instagramIntent =
+            Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/dbcflv/"))
+        startActivity(instagramIntent)
+    }
+
+    fun daybreaktwit(view: View?) {
+        val twitterIntent =
+            Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/daybreak_cf"))
+        startActivity(twitterIntent)
+    }
+
+    fun daybreaksnap(view: View?) {
+        val snapchatIntent = Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse("https://accounts.snapchat.com/dbcflv")
+        )
+        startActivity(snapchatIntent)
+    }
+
+    fun daybreakpin(view: View?) {
+        val pinterestIntent =
+            Intent(Intent.ACTION_VIEW, Uri.parse("https://www.pinterest.com"))
+        startActivity(pinterestIntent)
+    }
+
 }

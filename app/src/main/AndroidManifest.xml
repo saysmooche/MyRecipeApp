@@ -9,14 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".RecyclerViewActivity">
+        <activity android:name=".view.ExistingRecipeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ExistingRecipe">
+        <activity android:name=".view.IngredientViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.DetailActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>

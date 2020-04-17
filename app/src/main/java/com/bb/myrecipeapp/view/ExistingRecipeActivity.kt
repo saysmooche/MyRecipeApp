@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.login_fragment_layout.*
 import java.util.*
 
-class ExistingRecipeActivity : AppCompatActivity() {
+class ExistingRecipeActivity : AppCompatActivity(){
 
     private val loginFragment: LoginFragment = LoginFragment()
     private lateinit var viewModel: RecipeViewModel
@@ -37,6 +37,8 @@ class ExistingRecipeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.existing_main)
+        getSupportFragmentManager().beginTransaction()
+            .add(android.R.id.content, LoginFragment()).commit()
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar2)
         setSupportActionBar(toolbar)
@@ -66,15 +68,7 @@ class ExistingRecipeActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this).get(RecipeViewModel::class.java)
         if(viewModel.getUserLoggedIn() == true){
-//                getRecipes();
             setEmailAsUsername();
-        } else {
-
-            getSupportFragmentManager()
-                .beginTransaction()
-//                .add(R.id.login_fragment_view, loginFragment)
-                .commit();
-
         }
 
     }
@@ -84,7 +78,6 @@ class ExistingRecipeActivity : AppCompatActivity() {
     }
 
     fun loginSuccess() {
-//            getRecipes()
         setEmailAsUsername()
         supportFragmentManager.beginTransaction()
             .remove(loginFragment)
