@@ -19,6 +19,7 @@ import com.bb.myrecipeapp.util.DebugLogger
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.recipe_fragment_layout.*
 import java.io.ByteArrayOutputStream
@@ -134,9 +135,9 @@ class RecipeFragment: Fragment() {
 
     }
 
-    fun uploadRecipe() {
-
-        val databaseKey: String? = firebaseReference.push().key
+//    fun uploadRecipe() {
+//
+//        val databaseKey: String? = firebaseReference.push().key
 //        val recipe = Recipe(
 //            recipe_name_edittext.text.toString(),
 //            List<Ingredients>,
@@ -146,6 +147,6 @@ class RecipeFragment: Fragment() {
 //        if (databaseKey != null) {
 //            FirebaseDatabase.getInstance().getReference("Recipe").child(databaseKey).setValue(recipe)
 //        }
-    }
+//    }
 
 }

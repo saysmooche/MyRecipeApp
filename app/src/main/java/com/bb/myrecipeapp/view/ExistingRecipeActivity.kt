@@ -1,6 +1,7 @@
 package com.bb.myrecipeapp.view
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,17 +10,23 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bb.myrecipeapp.R
 import com.bb.myrecipeapp.adapter.ExistingRecipeAdapter
+import com.bb.myrecipeapp.util.Constants
+import com.bb.myrecipeapp.util.Constants.Companion.REQUEST_CODE
+import com.bb.myrecipeapp.util.Constants.Companion.STORAGE_PERMISSION
 import com.bb.myrecipeapp.viewmodel.RecipeViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.login_fragment_layout.*
 import java.util.*
 
-    class ExistingRecipeActivity : AppCompatActivity() {
+
+class ExistingRecipeActivity : AppCompatActivity() {
 
         private val loginFragment: LoginFragment = LoginFragment()
         private lateinit var viewModel: RecipeViewModel
@@ -45,6 +52,7 @@ import java.util.*
                 mRecipeList.addLast(" $value (Recipe Name)")
                 mRecyclerView.adapter!!.notifyItemInserted(recipeListSize)
                 mRecyclerView.smoothScrollToPosition(recipeListSize)
+
             }
             for (i in 0..10) {
                 mRecipeList.addLast("Default Recipe $value")
@@ -59,8 +67,8 @@ import java.util.*
 
             viewModel = ViewModelProviders.of(this).get(RecipeViewModel::class.java)
             if(viewModel.getUserLoggedIn() == true){
-//                getRecipes()
-                setEmailAsUsername()
+//                getRecipes();
+                setEmailAsUsername();
             } else {
 
                 getSupportFragmentManager()
@@ -100,4 +108,45 @@ import java.util.*
             val intent = Intent(applicationContext, RecyclerViewActivity::class.java)
             startActivity(intent)
         }
+
+    override fun onStart() {
+        super.onStart()
+        if (ContextCompat.checkSelfPermission(
+                this,
+                STORAGE_PERMISSION
+            ) != 0
+        ) {
+            this.requestPermissions()
+        } else {
+            showLoginFragment()
+        }
     }
+
+    private fun requestPermissions() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(STORAGE_PERMISSION),
+            REQUEST_CODE
+        )
+    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE) {
+            if (permissions[0] == STORAGE_PERMISSION);
+            run {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) showLoginFragment() else { //Permission was denied
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(
+                            this,
+                            STORAGE_PERMISSION
+                        )
+                    ) requestPermissions()
+                }
+            }
+        }
+    }
+
+}
