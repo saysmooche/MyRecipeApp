@@ -4,18 +4,26 @@ import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.bb.myrecipeapp.model.Ingredient
+import com.bb.myrecipeapp.model.Instruction
+import com.bb.myrecipeapp.model.Recipe
 import com.bb.myrecipeapp.model.User
+import com.bb.myrecipeapp.util.RecipeRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 
 
 class RecipeViewModel(application: Application) : AndroidViewModel(application){
 
-    private val registrationMLD = MutableLiveData<Boolean>()
-    private val loginMLD = MutableLiveData<Boolean>()
+    companion object{
+        private val registrationMLD = MutableLiveData<Boolean>()
+        private val loginMLD = MutableLiveData<Boolean>()
+        lateinit var recipeRepository: RecipeRepository
+        private lateinit var recipeReference: DatabaseReference
 
-    private lateinit var recipeReference: DatabaseReference
+    }
 
     fun getUserLoggedIn(): Boolean? {
         return FirebaseAuth.getInstance()
@@ -78,6 +86,22 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application){
                     registrationMLD.setValue(false)
                 }
             }
+    }
+
+    fun getIngredients(): Observable<List<Ingredient>>? {
+
+        return recipeRepository.getIngredients()
+            .subscribeOn(Schedulers.io())
+    }
+
+    fun getInstructions(): Observable<List<Instruction>> {
+        return recipeRepository.getInstruction()
+            .subscribeOn(Schedulers.io())
+    }
+
+    interface RecipeComponent {
+
+        fun getRecipe(): Observable<List<Recipe>>
     }
 }
 

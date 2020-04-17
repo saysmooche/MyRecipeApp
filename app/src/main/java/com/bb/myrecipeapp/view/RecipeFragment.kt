@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.bb.myrecipeapp.R
+import com.bb.myrecipeapp.model.Recipe
 import com.bb.myrecipeapp.util.Constants.Companion.REQUEST_CODE
 import com.bb.myrecipeapp.util.DebugLogger
 import com.bumptech.glide.Glide
@@ -135,18 +136,15 @@ class RecipeFragment: Fragment() {
 
     }
 
-//    fun uploadRecipe() {
-//
-//        val databaseKey: String? = firebaseReference.push().key
-//        val recipe = Recipe(
-//            recipe_name_edittext.text.toString(),
-//            List<Ingredients>,
-//            method_edittext.text.toString(),
-//            recipe_image
-//        )
-//        if (databaseKey != null) {
-//            FirebaseDatabase.getInstance().getReference("Recipe").child(databaseKey).setValue(recipe)
-//        }
-//    }
+    fun uploadRecipe() {
+
+        val databaseKey: String? = firebaseReference.push().key
+        val recipe = Recipe(recipe_name_edittext.text.toString()
+//            ingredients_edittext.text.toString(), method_edittext.text.toString(), recipe_image
+        )
+        if (databaseKey != null) {
+            FirebaseDatabase.getInstance().getReference("Recipe").child(databaseKey).setValue(recipe)
+        }
+    }
 
 }
