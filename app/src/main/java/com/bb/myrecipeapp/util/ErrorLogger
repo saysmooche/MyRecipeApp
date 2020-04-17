@@ -1,0 +1,17 @@
+package com.bb.myrecipeapp
+
+
+class ErrorLogger {
+    private val TAG = "TAG_N"
+    private val ERROR_PREFIX = "Error: "
+<<<<<<< Updated upstream
+    fun LogError(exception:Exception)
+=======
+
+    fun LogError(exception:Exception)
+
+>>>>>>> Stashed changes
+    fun LogDebug(log:String) {
+        Log.d((TAG), log)
+    }
+}
