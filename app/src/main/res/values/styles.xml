@@ -21,5 +21,11 @@
         <item name="android:textSize">24sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <style name="ButtonStyle">
+        <item name="android:background">@drawable/app_button_bg</item>
+    </style>
+    <style name="LoginButton" parent="ButtonStyle">
+        <item name="android:background">@drawable/login_button_bg</item>
+    </style>
 
 </resources>
