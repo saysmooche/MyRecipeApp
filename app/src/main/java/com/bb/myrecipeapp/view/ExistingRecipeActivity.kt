@@ -138,7 +138,7 @@ class ExistingRecipeActivity : AppCompatActivity() {
         if (requestCode == REQUEST_CODE) {
             if (permissions[0] == STORAGE_PERMISSION);
             run {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) showLoginFragment() else { //Permission was denied
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) showLoginFragment() else {
                     if (ActivityCompat.shouldShowRequestPermissionRationale(
                             this,
                             STORAGE_PERMISSION
@@ -147,6 +147,10 @@ class ExistingRecipeActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun showLoginFragment() {
+        TODO("Not yet implemented")
     }
 
 }
