@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bb.myrecipeapp.R
 import com.bb.myrecipeapp.adapter.ExistingRecipeAdapter
-import com.bb.myrecipeapp.util.Constants
 import com.bb.myrecipeapp.util.Constants.Companion.REQUEST_CODE
 import com.bb.myrecipeapp.util.Constants.Companion.STORAGE_PERMISSION
 import com.bb.myrecipeapp.viewmodel.RecipeViewModel
@@ -105,7 +104,7 @@ class ExistingRecipeActivity : AppCompatActivity() {
         }
 
         fun goCreate(view: View?){
-            val intent = Intent(applicationContext, RecyclerViewActivity::class.java)
+            val intent = Intent(applicationContext, IngredientViewActivity::class.java)
             startActivity(intent)
         }
 
