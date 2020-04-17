@@ -20,4 +20,12 @@
     <string name="log_username_editext">Username</string>
     <string name="log_password_edittext">Password</string>
     <string name="addrecipe">add recipe</string>
+    <string name="go_back">Go Back</string>
+    <string name="upload">Upload</string>
+    <string name="recipe_name">Recipe Name</string>
+    <string name="name">Name</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="instruction">Instruction</string>
+    <string name="ingredient_name">Ingredient Name</string>
+    <string name="recipe_instructions">Recipe Instructions</string>
 </resources>

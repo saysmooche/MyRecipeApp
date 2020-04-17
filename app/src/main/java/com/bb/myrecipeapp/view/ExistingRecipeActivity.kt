@@ -3,12 +3,14 @@ package com.bb.myrecipeapp.view
 
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
@@ -36,10 +38,10 @@ class ExistingRecipeActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.existing_main)
+//        setContentView(R.layout.existing_main)
         getSupportFragmentManager().beginTransaction()
             .add(android.R.id.content, LoginFragment()).commit()
-
+        setContentView(R.layout.existing_main)
         val toolbar = findViewById<Toolbar>(R.id.toolbar2)
         setSupportActionBar(toolbar)
         val buttonPlus = findViewById<Button>(R.id.button)
@@ -142,7 +144,21 @@ class ExistingRecipeActivity : AppCompatActivity(){
     }
 
     private fun showLoginFragment() {
-        TODO("Not yet implemented")
+//        TODO("Not yet implemented")
+    }
+
+
+    fun openAnimation(view: View) {
+
+        var picAnimation: AnimationDrawable? = null
+        lateinit var loginImage: ImageView
+
+        picAnimation = loginImage.background as AnimationDrawable
+        loginImage.setBackgroundResource(R.drawable.animation_items)
+        when (view.id) {
+            R.id.user_name_edittext ->
+                picAnimation.start()
+        }
     }
 
 }
