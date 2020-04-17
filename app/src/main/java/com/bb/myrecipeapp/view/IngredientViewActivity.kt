@@ -5,8 +5,6 @@ package com.bb.myrecipeapp.view
     import android.view.Menu
     import android.view.MenuItem
     import android.view.View
-    import android.widget.Button
-    import android.widget.EditText
     import androidx.appcompat.widget.Toolbar
     import androidx.fragment.app.Fragment
     import androidx.fragment.app.FragmentTransaction
@@ -15,6 +13,7 @@ package com.bb.myrecipeapp.view
     import com.bb.myrecipeapp.R
     import com.bb.myrecipeapp.adapter.IngredientAdapter
     import com.bb.myrecipeapp.base.BaseClass
+    import kotlinx.android.synthetic.main.activity_main.*
     import java.util.*
 
 
@@ -30,19 +29,15 @@ class IngredientViewActivity : BaseClass() {
 
             val toolbar = findViewById<Toolbar>(R.id.toolbar)
             setSupportActionBar(toolbar)
-            val button123 = findViewById<Button>(R.id.button)
-            var editName = findViewById<EditText?>(R.id.editText1)
-            val value = editName!!.text.toString()
+            val value = editText1.text.toString()
 
-            button123.setOnClickListener {
+            button.setOnClickListener {
                 val ingredientListSize = mIngredientList.size
                 mIngredientList.addLast(" $value Ingredient Name")
                 mRecyclerView.adapter!!.notifyItemInserted(ingredientListSize)
                 mRecyclerView.smoothScrollToPosition(ingredientListSize)
             }
-            for (i in 0..10) {
-                mIngredientList.addLast("Default Ingredient $value")
-            }
+
             mRecyclerView = findViewById(R.id.recyclerview)
             mAdapter =
                 IngredientAdapter(
@@ -78,4 +73,12 @@ class IngredientViewActivity : BaseClass() {
             transaction.addToBackStack(null)
             transaction.commit()
         }
+
+    override fun onDestroy(){
+        super.onDestroy()
+    }
+
+    override fun onResume(){
+        super.onResume()
+    }
     }

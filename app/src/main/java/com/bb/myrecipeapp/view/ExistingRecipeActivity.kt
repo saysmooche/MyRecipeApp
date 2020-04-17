@@ -39,9 +39,11 @@ class ExistingRecipeActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.existing_main)
-        getSupportFragmentManager().beginTransaction()
-            .add(android.R.id.content, LoginFragment()).commit()
+        getSupportFragmentManager()
+            .beginTransaction()
+            .add(R.id.main_login_frame, LoginFragment()).commit()
         setContentView(R.layout.existing_main)
+
         val toolbar = findViewById<Toolbar>(R.id.toolbar2)
         setSupportActionBar(toolbar)
         val buttonPlus = findViewById<Button>(R.id.button)
@@ -159,6 +161,14 @@ class ExistingRecipeActivity : AppCompatActivity(){
             R.id.user_name_edittext ->
                 picAnimation.start()
         }
+    }
+
+    override fun onDestroy(){
+        super.onDestroy()
+    }
+
+    override fun onResume(){
+        super.onResume()
     }
 
 }

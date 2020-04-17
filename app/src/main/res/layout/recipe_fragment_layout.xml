@@ -59,6 +59,15 @@
         android:text="@string/select_image_button" />
 
     <Button
+        style="@style/ButtonStyle"
+        android:background="@color/colorOrange"
+        android:id="@+id/select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_16dp"
+        android:text="select" />
+
+    <Button
         android:id="@+id/upload_recipe_button"
         style="@style/ButtonStyle"
         android:layout_width="match_parent"
