@@ -4,7 +4,19 @@
     <string name="app_name">RecipeApp</string>
     <string name="action_settings">Settings</string>
     <string name="create">Create</string>
-    <string name="recipe">Recipe</string>
     <string name="name">Name</string>
-    <string name="addrecipe">Add recipe</string>
+    <string name="recipe">Recipe</string>
+    <string name="ck_verify_email_message">Please check verification email.</string>
+    <string name="success_login">Login successful</string>
+    <string name="my_provider_name">com.bb.fileproviders</string>
+    <string name="image_name_text">image_%s</string>
+    <string name="date_format_text">DD_MM_YYYY_ss</string>
+    <string name="image_postfix">.jpg</string>
+    <string name="upload_recipe_button">Upload Recipe</string>
+    <string name="select_image_button">Select Image</string>
+    <string name="instructions_edittext">Instructions</string>
+    <string name="ingredients_edittext">Ingredients</string>
+    <string name="recipe_name_edittext">Recipe Name</string>
+    <string name="log_username_editext">Username</string>
+    <string name="log_password_edittext">Password</string>
 </resources>

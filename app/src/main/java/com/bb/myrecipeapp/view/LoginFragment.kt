@@ -29,7 +29,7 @@ class LoginFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return super.onCreateView(inflater, container, savedInstanceState)
-        
+
     }
 
 
@@ -50,7 +50,7 @@ class LoginFragment: Fragment() {
         if(aBoolean){
             DebugLogger.logDebug(getString(R.string.success_login))
             ((activity as ExistingRecipeActivity?)?.loginSuccess())
-    }
+        }
     }
 
     private fun handleRegistration(aBoolean: Boolean) {
@@ -87,4 +87,4 @@ class LoginFragment: Fragment() {
         this.loginObserver?.let { viewModel.getLoginStatus().observe(this, it) }
 
     }
-    }
+}

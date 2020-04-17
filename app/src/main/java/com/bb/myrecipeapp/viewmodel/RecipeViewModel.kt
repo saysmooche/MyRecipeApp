@@ -12,6 +12,7 @@ import com.bb.myrecipeapp.util.RecipeRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 
@@ -89,14 +90,15 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application){
     }
 
     fun getIngredients(): Observable<List<Ingredient>>? {
-
         return recipeRepository.getIngredients()
-            .subscribeOn(Schedulers.io())
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(Schedulers.io())
     }
 
     fun getInstructions(): Observable<List<Instruction>> {
         return recipeRepository.getInstruction()
-            .subscribeOn(Schedulers.io())
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(Schedulers.io())
     }
 
     interface RecipeComponent {
